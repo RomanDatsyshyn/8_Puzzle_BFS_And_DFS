@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Cute+Font&display=swap" rel="stylesheet">
+  <script src="ai2.js"></script>
+</head>
+
+<body>
+  <button id="start" onclick="printGrid(arr),reset()">START</button>
+  <button id="rand" onclick="shuffle(arr)">Randomize</button>
+  <button id="buttonU" onclick="moveUp(arr)">Up</button>
+  <button id="buttonD" onclick="moveDown(arr)">Down</button>
+  <button id="buttonL" onclick="moveLeft(arr)">Left</button>
+  <button id="buttonR" onclick="moveRight(arr)">Right</button>
+  <button id="solver" onclick="solver(arr)">SOLVE</button>
+  <button id="solver" onclick="solver2(arr)">BFS StepByStep</button>
+  <button id="solver" onclick="solver2(arr, -1000)">BFS</button>
+  <button id="solver" onclick="solver3(arr)">DFS StepByStep</button>
+  <button id="solver" onclick="solver3(arr, -1000)">DFS</button>
+  <input id="inner" type="text" value="26374518 ">
+  <button id="inp" onclick="inputer()">Input</button>
+
+  <div id="score">
+    <div id="sleft">
+        <p id="counter">0</p>
+    </div>
+    <div id="scenter">
+      <p id="pluser2">0</p>
+    </div>
+    <div id="sright">
+        <p id="pluser">0</p>
+    </div>
+  </div>
+  <div id="grid">
+    <p id="grid0"></p>
+    <p id="grid1"></p>
+    <p id="grid2"></p>
+    <p id="grid3"></p>
+    <p id="grid4"></p>
+    <p id="grid5"></p>
+    <p id="grid6"></p>
+    <p id="grid7"></p>
+    <p id="grid8"></p>
+  </div>
+<div id="all">
+<div id="tree0">
+    <div class="sgrid" id="sgrid0">
+      <p class="sgridItem" id="sgrid00"></p>
+      <p class="sgridItem" id="sgrid01"></p>
+      <p class="sgridItem" id="sgrid02"></p>
+      <p class="sgridItem" id="sgrid03"></p>
+      <p class="sgridItem" id="sgrid04"></p>
+      <p class="sgridItem" id="sgrid05"></p>
+      <p class="sgridItem" id="sgrid06"></p>
+      <p class="sgridItem" id="sgrid07"></p>
+      <p class="sgridItem" id="sgrid08"></p>
+    </div>
+  </div>
+  <div id="tree1">
+    <div class="sgrid" id="sgrid1">
+      <p class="sgridItem" id="sgrid10"></p>
+      <p class="sgridItem" id="sgrid11"></p>
+      <p class="sgridItem" id="sgrid12"></p>
+      <p class="sgridItem" id="sgrid13"></p>
+      <p class="sgridItem" id="sgrid14"></p>
+      <p class="sgridItem" id="sgrid15"></p>
+      <p class="sgridItem" id="sgrid16"></p>
+      <p class="sgridItem" id="sgrid17"></p>
+      <p class="sgridItem" id="sgrid18"></p>
+    </div>
+    <div class="sgrid" id="sgrid2">
+      <p class="sgridItem" id="sgrid20"></p>
+      <p class="sgridItem" id="sgrid21"></p>
+      <p class="sgridItem" id="sgrid22"></p>
+      <p class="sgridItem" id="sgrid23"></p>
+      <p class="sgridItem" id="sgrid24"></p>
+      <p class="sgridItem" id="sgrid25"></p>
+      <p class="sgridItem" id="sgrid26"></p>
+      <p class="sgridItem" id="sgrid27"></p>
+      <p class="sgridItem" id="sgrid28"></p>
+    </div>
+    <div class="sgrid" id="sgrid3">
+      <p class="sgridItem" id="sgrid30"></p>
+      <p class="sgridItem" id="sgrid31"></p>
+      <p class="sgridItem" id="sgrid32"></p>
+      <p class="sgridItem" id="sgrid33"></p>
+      <p class="sgridItem" id="sgrid34"></p>
+      <p class="sgridItem" id="sgrid35"></p>
+      <p class="sgridItem" id="sgrid36"></p>
+      <p class="sgridItem" id="sgrid37"></p>
+      <p class="sgridItem" id="sgrid38"></p>
+    </div>
+    <div class="sgrid" id="sgrid4">
+      <p class="sgridItem" id="sgrid40"></p>
+      <p class="sgridItem" id="sgrid41"></p>
+      <p class="sgridItem" id="sgrid42"></p>
+      <p class="sgridItem" id="sgrid43"></p>
+      <p class="sgridItem" id="sgrid44"></p>
+      <p class="sgridItem" id="sgrid45"></p>
+      <p class="sgridItem" id="sgrid46"></p>
+      <p class="sgridItem" id="sgrid47"></p>
+      <p class="sgridItem" id="sgrid48"></p>
+    </div>
+  </div>
+  <div id="tree2">
+    <div id="tree21">
+      <div class="sgrid" id="sgrid5">
+        <p class="sgridItem" id="sgrid50"></p>
+        <p class="sgridItem" id="sgrid51"></p>
+        <p class="sgridItem" id="sgrid52"></p>
+        <p class="sgridItem" id="sgrid53"></p>
+        <p class="sgridItem" id="sgrid54"></p>
+        <p class="sgridItem" id="sgrid55"></p>
+        <p class="sgridItem" id="sgrid56"></p>
+        <p class="sgridItem" id="sgrid57"></p>
+        <p class="sgridItem" id="sgrid58"></p>
+      </div>
+      <div class="sgrid" id="sgrid6">
+        <p class="sgridItem" id="sgrid60"></p>
+        <p class="sgridItem" id="sgrid61"></p>
+        <p class="sgridItem" id="sgrid62"></p>
+        <p class="sgridItem" id="sgrid63"></p>
+        <p class="sgridItem" id="sgrid64"></p>
+        <p class="sgridItem" id="sgrid65"></p>
+        <p class="sgridItem" id="sgrid66"></p>
+        <p class="sgridItem" id="sgrid67"></p>
+        <p class="sgridItem" id="sgrid68"></p>
+      </div>
+      <div class="sgrid" id="sgrid7">
+        <p class="sgridItem" id="sgrid70"></p>
+        <p class="sgridItem" id="sgrid71"></p>
+        <p class="sgridItem" id="sgrid72"></p>
+        <p class="sgridItem" id="sgrid73"></p>
+        <p class="sgridItem" id="sgrid74"></p>
+        <p class="sgridItem" id="sgrid75"></p>
+        <p class="sgridItem" id="sgrid76"></p>
+        <p class="sgridItem" id="sgrid77"></p>
+        <p class="sgridItem" id="sgrid78"></p>
+      </div>
+    </div>
+    <div id="tree22">
+      <div class="sgrid" id="sgrid8">
+        <p class="sgridItem" id="sgrid80"></p>
+        <p class="sgridItem" id="sgrid81"></p>
+        <p class="sgridItem" id="sgrid82"></p>
+        <p class="sgridItem" id="sgrid83"></p>
+        <p class="sgridItem" id="sgrid84"></p>
+        <p class="sgridItem" id="sgrid85"></p>
+        <p class="sgridItem" id="sgrid86"></p>
+        <p class="sgridItem" id="sgrid87"></p>
+        <p class="sgridItem" id="sgrid88"></p>
+      </div>
+      <div class="sgrid" id="sgrid9">
+        <p class="sgridItem" id="sgrid90"></p>
+        <p class="sgridItem" id="sgrid91"></p>
+        <p class="sgridItem" id="sgrid92"></p>
+        <p class="sgridItem" id="sgrid93"></p>
+        <p class="sgridItem" id="sgrid94"></p>
+        <p class="sgridItem" id="sgrid95"></p>
+        <p class="sgridItem" id="sgrid96"></p>
+        <p class="sgridItem" id="sgrid97"></p>
+        <p class="sgridItem" id="sgrid98"></p>
+      </div>
+      <div class="sgrid" id="sgrid010">
+        <p class="sgridItem" id="sgrid100"></p>
+        <p class="sgridItem" id="sgrid101"></p>
+        <p class="sgridItem" id="sgrid102"></p>
+        <p class="sgridItem" id="sgrid103"></p>
+        <p class="sgridItem" id="sgrid104"></p>
+        <p class="sgridItem" id="sgrid105"></p>
+        <p class="sgridItem" id="sgrid106"></p>
+        <p class="sgridItem" id="sgrid107"></p>
+        <p class="sgridItem" id="sgrid108"></p>
+      </div>
+    </div>
+    <div id="tree23">
+      <div class="sgrid" id="sgrid011">
+        <p class="sgridItem" id="sgrid110"></p>
+        <p class="sgridItem" id="sgrid111"></p>
+        <p class="sgridItem" id="sgrid112"></p>
+        <p class="sgridItem" id="sgrid113"></p>
+        <p class="sgridItem" id="sgrid114"></p>
+        <p class="sgridItem" id="sgrid115"></p>
+        <p class="sgridItem" id="sgrid116"></p>
+        <p class="sgridItem" id="sgrid117"></p>
+        <p class="sgridItem" id="sgrid118"></p>
+      </div>
+      <div class="sgrid" id="sgrid012">
+        <p class="sgridItem" id="sgrid120"></p>
+        <p class="sgridItem" id="sgrid121"></p>
+        <p class="sgridItem" id="sgrid122"></p>
+        <p class="sgridItem" id="sgrid123"></p>
+        <p class="sgridItem" id="sgrid124"></p>
+        <p class="sgridItem" id="sgrid125"></p>
+        <p class="sgridItem" id="sgrid126"></p>
+        <p class="sgridItem" id="sgrid127"></p>
+        <p class="sgridItem" id="sgrid128"></p>
+      </div>
+      <div class="sgrid" id="sgrid013">
+        <p class="sgridItem" id="sgrid130"></p>
+        <p class="sgridItem" id="sgrid131"></p>
+        <p class="sgridItem" id="sgrid132"></p>
+        <p class="sgridItem" id="sgrid133"></p>
+        <p class="sgridItem" id="sgrid134"></p>
+        <p class="sgridItem" id="sgrid135"></p>
+        <p class="sgridItem" id="sgrid136"></p>
+        <p class="sgridItem" id="sgrid137"></p>
+        <p class="sgridItem" id="sgrid138"></p>
+      </div>
+    </div>
+    <div id="tree24">
+      <div class="sgrid" id="sgrid014">
+        <p class="sgridItem" id="sgrid140"></p>
+        <p class="sgridItem" id="sgrid141"></p>
+        <p class="sgridItem" id="sgrid142"></p>
+        <p class="sgridItem" id="sgrid143"></p>
+        <p class="sgridItem" id="sgrid144"></p>
+        <p class="sgridItem" id="sgrid145"></p>
+        <p class="sgridItem" id="sgrid146"></p>
+        <p class="sgridItem" id="sgrid147"></p>
+        <p class="sgridItem" id="sgrid148"></p>
+      </div>
+      <div class="sgrid" id="sgrid015">
+        <p class="sgridItem" id="sgrid150"></p>
+        <p class="sgridItem" id="sgrid151"></p>
+        <p class="sgridItem" id="sgrid152"></p>
+        <p class="sgridItem" id="sgrid153"></p>
+        <p class="sgridItem" id="sgrid154"></p>
+        <p class="sgridItem" id="sgrid155"></p>
+        <p class="sgridItem" id="sgrid156"></p>
+        <p class="sgridItem" id="sgrid157"></p>
+        <p class="sgridItem" id="sgrid158"></p>
+      </div>
+      <div class="sgrid" id="sgrid016">
+        <p class="sgridItem" id="sgrid160"></p>
+        <p class="sgridItem" id="sgrid161"></p>
+        <p class="sgridItem" id="sgrid162"></p>
+        <p class="sgridItem" id="sgrid163"></p>
+        <p class="sgridItem" id="sgrid164"></p>
+        <p class="sgridItem" id="sgrid165"></p>
+        <p class="sgridItem" id="sgrid166"></p>
+        <p class="sgridItem" id="sgrid167"></p>
+        <p class="sgridItem" id="sgrid168"></p>
+      </div>
+    </div>
+  </div>
+  <canvas id="myCanvas" width="1100px" height="500">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+</div>
+
+
+
+<script>
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  ctx.beginPath();
+  ctx.moveTo(600-55, 55);
+  ctx.lineTo(260-55, 157);
+  ctx.moveTo(600-55, 55);
+  ctx.lineTo(495-55, 157);
+  ctx.moveTo(615-55, 55);
+  ctx.lineTo(725-55, 157);
+  ctx.moveTo(615-55, 55);
+  ctx.lineTo(955-55, 157);
+  ctx.moveTo(260-55, 213);
+  ctx.lineTo(150-55, 314);
+  ctx.moveTo(260-55, 213);
+  ctx.lineTo(223-55, 314);
+  ctx.moveTo(260-55, 213);
+  ctx.lineTo(295-55, 314);
+  ctx.moveTo(495-55, 213);
+  ctx.lineTo(420-55, 314);
+  ctx.moveTo(495-55, 213);
+  ctx.lineTo(492-55, 314);
+  ctx.moveTo(495-55, 213);
+  ctx.lineTo(565-55, 314);
+  ctx.moveTo(727-55, 213);
+  ctx.lineTo(690-55, 314);
+  ctx.moveTo(727-55, 213);
+  ctx.lineTo(763-55, 314);
+  ctx.moveTo(727-55, 213);
+  ctx.lineTo(837-55, 314);
+  ctx.moveTo(960-55, 213);
+  ctx.lineTo(960-55, 314);
+  ctx.moveTo(960-55, 213);
+  ctx.lineTo(1030-55, 314);
+  ctx.moveTo(960-55, 213);
+  ctx.lineTo(1100-55, 314);
+  ctx.stroke();
+</script>
+
+</body>
+
+</html>
